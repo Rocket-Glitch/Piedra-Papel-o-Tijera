@@ -1,17 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piedra, Papel o GATOTijera</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Piedra Papel Tijera Online</title>
+<link rel="stylesheet" href="style.css">
 </head>
-    
 <body>
-    <h1>RGATOock Paper Scissors</h1>
-    <button>Piedra</button>
-    <button>Papel</button>
-    <button>Tijera</button>
+<div class="container">
+<h1>Piedra Papel Tijera Online</h1>
+
+<div id="menu">
+<input id="roomCode" placeholder="Código de sala">
+<button id="createRoom">Crear sala</button>
+<button id="joinRoom">Unirse</button>
+</div>
+
+<div id="game" style="display:none">
+<p id="status">Esperando...</p>
+<div class="buttons">
+<button id="rock">🪨 Piedra</button>
+<button id="paper">📄 Papel</button>
+<button id="scissors">✂️ Tijeras</button>
+</div>
+<h2 id="result"></h2>
+<button id="playAgain">Jugar otra vez</button>
+</div>
+</div>
+
+<script type="module" src="firebase-config.js"></script>
+<script type="module" src="firebase.js"></script>
+<script type="module" src="script.js"></script>
 </body>
-    
 </html>
