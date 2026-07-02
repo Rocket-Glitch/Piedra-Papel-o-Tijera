@@ -1,35 +1,14 @@
 body{
-margin:0;
 font-family:Arial,sans-serif;
-background:#0f172a;
-color:white;
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:100vh;
-}
-.container{
 background:#1e293b;
-padding:30px;
-border-radius:16px;
-width:350px;
+color:#fff;
 text-align:center;
-box-shadow:0 0 20px rgba(0,0,0,.3);
-}
-input,button{
-padding:12px;
-margin:8px;
-font-size:18px;
-border-radius:8px;
-border:none;
+margin-top:60px;
 }
 button{
+padding:12px 20px;
+font-size:22px;
+margin:10px;
+border-radius:8px;
 cursor:pointer;
-}
-.buttons button{
-display:block;
-width:100%;
-}
-#result{
-margin-top:20px;
 }
