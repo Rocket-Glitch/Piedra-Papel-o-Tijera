@@ -1,30 +1,45 @@
-// DEMO LOCAL.
-// La versión multijugador requiere Firebase.
+import {db} from './firebase-config.js';
+import {ref,set,update,onValue} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
-const options=["Rock","Paper","Scissors"];
-const result=document.getElementById("result");
+let me=null;
 
-function play(player){
- const computer=options[Math.floor(Math.random()*3)];
- let msg;
- if(player===computer) msg="🤝 Empate";
- else if(
-   (player==="Rock"&&computer==="Scissors")||
-   (player==="Paper"&&computer==="Rock")||
-   (player==="Scissors"&&computer==="Paper")
- ) msg="🎉 Ganaste";
- else msg="😢 Perdiste";
+p1.onclick=()=>{
+ me='player1';
+ login.style.display='none';
+ game.style.display='block';
+ status.textContent='Eres Jugador 1';
+};
 
- result.innerHTML=`Tú: ${player}<br>Computadora: ${computer}<br><br>${msg}`;
+p2.onclick=()=>{
+ me='player2';
+ login.style.display='none';
+ game.style.display='block';
+ status.textContent='Eres Jugador 2';
+};
+
+function send(move){
+ if(!me){alert('Selecciona un jugador');return;}
+ update(ref(db,'game'),{[me]:move});
 }
 
-document.getElementById("rock").onclick=()=>play("Rock");
-document.getElementById("paper").onclick=()=>play("Paper");
-document.getElementById("scissors").onclick=()=>play("Scissors");
+rock.onclick=()=>send('Rock');
+paper.onclick=()=>send('Paper');
+scissors.onclick=()=>send('Scissors');
 
-document.getElementById("createRoom").onclick=()=>{
- alert("La versión completa necesita Firebase configurado.");
-};
-document.getElementById("joinRoom").onclick=()=>{
- alert("La versión completa necesita Firebase configurado.");
-};
+reset.onclick=()=>set(ref(db,'game'),{player1:null,player2:null});
+
+onValue(ref(db,'game'),snap=>{
+ const g=snap.val();
+ if(!g||!g.player1||!g.player2)return;
+
+ let r='';
+ if(g.player1===g.player2) r='Empate';
+ else if(
+ (g.player1==='Rock'&&g.player2==='Scissors')||
+ (g.player1==='Paper'&&g.player2==='Rock')||
+ (g.player1==='Scissors'&&g.player2==='Paper')
+ ) r='Ganó Jugador 1';
+ else r='Ganó Jugador 2';
+
+ result.innerHTML=`J1: ${g.player1}<br>J2: ${g.player2}<br><br>${r}`;
+});
