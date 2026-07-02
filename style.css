@@ -1,11 +1,35 @@
 body{
-    background-color: lightblue;
+margin:0;
+font-family:Arial,sans-serif;
+background:#0f172a;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
 }
-
-h1{
-    color: white;
+.container{
+background:#1e293b;
+padding:30px;
+border-radius:16px;
+width:350px;
+text-align:center;
+box-shadow:0 0 20px rgba(0,0,0,.3);
 }
-
+input,button{
+padding:12px;
+margin:8px;
+font-size:18px;
+border-radius:8px;
+border:none;
+}
 button{
-    font-size: 24px;
+cursor:pointer;
+}
+.buttons button{
+display:block;
+width:100%;
+}
+#result{
+margin-top:20px;
 }
