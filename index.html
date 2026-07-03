@@ -1,29 +1,83 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Piedra Papel Tijera - 2 Jugadores</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Piedra Papel Tijera - Multijugador</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+<body>
+    <div class="container">
+        <h1>🪨📄✂️ Piedra Papel Tijera</h1>
+        <p class="subtitle">Juego multijugador en tiempo real</p>
+        
+        <!-- Pantalla de login -->
+        <div id="login" class="login-screen">
+            <div class="login-card">
+                <h2>🎮 Elige tu jugador</h2>
+                <div class="player-buttons">
+                    <button id="p1" class="player-btn player1-btn">
+                        <span class="player-icon">👤</span>
+                        <span class="player-label">Jugador 1</span>
+                        <span class="player-badge">🟢</span>
+                    </button>
+                    <button id="p2" class="player-btn player2-btn">
+                        <span class="player-icon">👤</span>
+                        <span class="player-label">Jugador 2</span>
+                        <span class="player-badge">🔴</span>
+                    </button>
+                </div>
+                <div class="game-rules">
+                    <p>📌 Reglas:</p>
+                    <ul>
+                        <li>🪨 Piedra vence a ✂️ Tijeras</li>
+                        <li>📄 Papel vence a 🪨 Piedra</li>
+                        <li>✂️ Tijeras vence a 📄 Papel</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-  <body>
-  <h1>Piedra Papel Tijera</h1>
-  <div id="login">
-    <h2>¿Quién eres?</h2>
-    <button id="p1">Jugador 1</button>
-    <button id="p2">Jugador 2</button>
-  </div>
-  <div id="game" style="display:none">
-    <p id="status"></p>
-    <button id="rock">🪨 Piedra</button>
-    <button id="paper">📄 Papel</button>
-    <button id="scissors">✂️ Tijeras</button>
-    <h2 id="result"></h2>
-    <button id="reset">Nueva partida</button>
-  </div>
-  <script type="module" src="firebase-config.js"></script>
-  <script type="module" src="script.js"></script>
+        <!-- Pantalla de juego -->
+        <div id="game" class="game-screen" style="display:none">
+            <div class="game-header">
+                <div class="player-info" id="playerInfo">
+                    <span class="player-indicator" id="playerIndicator">🔵</span>
+                    <span id="status">Conectado como Jugador 1</span>
+                </div>
+                <button id="reset" class="reset-btn">🔄 Nueva partida</button>
+            </div>
+
+            <div class="game-area">
+                <div class="choices">
+                    <button id="rock" class="choice-btn rock">🪨</button>
+                    <button id="paper" class="choice-btn paper">📄</button>
+                    <button id="scissors" class="choice-btn scissors">✂️</button>
+                </div>
+                <p class="choice-hint">Selecciona tu jugada</p>
+            </div>
+
+            <div class="result-area" id="resultArea">
+                <div class="result-placeholder">
+                    <span>⏳</span>
+                    <p>Esperando oponente...</p>
+                </div>
+            </div>
+
+            <div class="game-status" id="gameStatus">
+                <div class="status-item">
+                    <span class="status-label">👤 Jugador 1:</span>
+                    <span class="status-value" id="p1move">⏳</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">👤 Jugador 2:</span>
+                    <span class="status-value" id="p2move">⏳</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
-  
 </html>
